@@ -1,25 +1,40 @@
 # PHASE 2
 def convert_to_int(str)
+  begin
   Integer(str)
+
+  rescue ArgumentError
+    puts "Wrong argument!"
+    return nil
+  end
+  
 end
+
 
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
 
 def reaction(maybe_fruit)
-  if FRUITS.include? maybe_fruit
-    puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
-    raise StandardError 
-  end 
+  begin
+    if FRUITS.include? maybe_fruit
+      puts "OMG, thanks so much for the #{maybe_fruit}!"
+    # elsif maybe_fruit == "coffee"
+    #   retry 
+    else
+      raise StandardError 
+      # puts "Next time, try giving me coffee"
+    end 
+  end
 end
 
 def feed_me_a_fruit
+  begin
   puts "Hello, I am a friendly monster. :)"
 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
   reaction(maybe_fruit) 
+  retry
 end  
 
 # PHASE 4
@@ -44,3 +59,17 @@ class BestFriend
 end
 
 
+# def remote_request
+#   begin
+#     response = RestClient.get my_request_url
+#   rescue RestClient::ResourceNotFound => error
+#     @retries ||= 0
+#     if @retries < @max_retries
+#       @retries += 1
+#       retry
+#     else
+#       raise error
+#     end
+#   end
+#   response
+# end
